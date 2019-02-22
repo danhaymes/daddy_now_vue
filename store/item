@@ -1,0 +1,17 @@
+module Grocery
+  class Item 
+    attr_reader :name, :brand, :price, :size
+    attr_writer :brand
+
+    def initialize(input_options)
+      @name = input_options[:name]
+      @brand = input_options[:brand]
+      @price = input_options[:price]
+      @size = input_options[:size]
+    end
+
+    def print_info
+    "#{@brand} #{@name} sells for $#{@price}"
+    end
+  end 
+end 

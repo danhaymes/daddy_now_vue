@@ -1,0 +1,43 @@
+# # item1 = {:name => "Peanut Butter", :brand => "Skippy", :price => 3, :size => "16oz"}
+# # item1 = {:name => "Jelly", :brand => "Smuckers", :price => 2, :size => "12oz"}
+# # item1 = {:name => "Bread", :brand => "Sara Lee", :price => 5, :size => "regular"}
+
+# # p " A #{item1[:size]} sized #{item1[:brand]} #{item1[:name]} sells for $#{item1[:price]}"
+
+
+# class Item 
+#   attr_reader :name, :brand, :price, :size
+#   attr_writer :brand
+
+#   def initialize(input_options)
+#     @name = input_options[:name]
+#     @brand = input_options[:brand]
+#     @price = input_options[:price]
+#     @size = input_options[:size]
+#   end
+
+#   def print_info
+#     "#{@brand} #{@name} sells for $#{@price}"
+#   end
+
+# end
+
+# item1 = Item.new(name: "Peanut Butter", brand: "Skippy", price: 3, size: "160z")
+# p item1
+# p item1.print_info
+# @brand = "jiffy"
+# p @brand
+
+class Food < Item
+  def initialize(input_options) 
+    super
+    @food = input_options[:item]
+  end
+
+  def shelf_life
+    @food = 3  
+  end
+end
+
+food = Food.new(item1)
+food.shelf_life 
