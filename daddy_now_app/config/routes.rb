@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
+  # devise_for :users
+  get 'home/index'
   # EXAMPLE HTML ROUTE
-  # get "/photos" => "photos#index"
+  
+  root 'home#index'
+
+
+  #google calendar authorization testing routes 
+  get '/redirect', to: 'google_calendar#redirect', as: 'redirect'
+  get '/callback', to: 'google_calendar#callback', as: 'callback'
+  get '/calendars', to: 'google_calendar#calendars', as: 'calendars'
+  get '/events/:calendar_id', to: 'google_calendar#events', as: 'events', calendar_id: /[^\/]+/
+  post '/events/:calendar_id', to: 'google_calendar#new_event', as: 'new_event', calendar_id: /[^\/]+/
 
   # EXAMPLE JSON ROUTE WITH API NAMESPACE
   namespace :api do
@@ -8,5 +19,25 @@ Rails.application.routes.draw do
     post "/users" => "users#create"
     get "/users/:id" => "users#show"
     patch "/users/:id" => "users#update"
+    delete "/users/:id" => "users#destroy"
+
+    get "/posts" => "posts#index"
+
+    get "/posts" => "posts#index"
+    get "/posts" => "posts#new"
+    get "/posts/:id" => "posts#show"
+    post "/posts" => "posts#create"
+    get "/posts:id/edit" => "posts#edit"
+    patch "/posts/:id" => "posts#update"
+    delete "/posts/:id" => "posts#destroy"
+
+
+    get "/comments" => "comments#index"
+    get "/comments" => "comments#new"
+    get "/comments/:id" => "comments#show"
+    post "/comments" => "comments#create"
+
+    post "/sessions" => "sessions#create"
+
   end
 end

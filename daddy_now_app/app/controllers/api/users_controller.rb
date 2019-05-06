@@ -10,6 +10,7 @@ class Api::UsersController < ApplicationController
       last_name: params[:last_name],
       email: params[:email],
       user_name: params[:user_name],
+      password: params[:password],
       zipcode: params[:zipcode],
       profile_pic: params[:profile_pic],
       due_date: params[:due_date]
@@ -24,7 +25,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(4)
+    @user = User.find(params[:id])
 
     @user.first_name = params[:first_name] || @user.first_name
     @user.last_name = params[:last_name] || @user.last_name
@@ -35,6 +36,12 @@ class Api::UsersController < ApplicationController
     
     @user.save
     render 'show.json.jbuilder'
+  end
+
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    redirect_to "/users"
   end
 
 end

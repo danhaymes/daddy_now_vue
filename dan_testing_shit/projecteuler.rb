@@ -16,13 +16,13 @@
 
 # Project E #2 
 
-index = 1
-# sum = 0 
+# index = 1
+# # sum = 0 
 
 
-10.times do 
-p index + index
-index += 1
-end  
+# 10.times do 
+# p index + index
+# index += 1
+# end  
 # p sum 
 

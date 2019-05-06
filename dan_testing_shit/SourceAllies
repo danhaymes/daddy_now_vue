@@ -1,0 +1,8 @@
+def isSumPossible(a, N):
+    for number in a:    
+        difference = N - number
+        if difference in a: 
+            return(1)
+    return(0)    
+
+print(isSumPossible([1,18,21,28,31,40,55,60,62], 67))   
