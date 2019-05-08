@@ -6,6 +6,7 @@ import Login from "./views/Login.vue";
 import Calendar from "./views/Calendar.vue";
 import Posts from "./views/posts.vue";
 import Logout from "./views/logout.vue";
+import baby_name from "./views/baby_name.vue";
 
 Vue.use(Router)
 import axios from "axios";
@@ -23,6 +24,11 @@ export default new Router({
       path: "/signup", 
       name: "signup", 
       component: Signup 
+    },
+    { 
+      path: "/baby_name", 
+      name: "baby_names", 
+      component: baby_name 
     },
     { 
       path: "/login", 

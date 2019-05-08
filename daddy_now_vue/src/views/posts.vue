@@ -9,75 +9,29 @@
     <h1>{{ message }}</h1>
     <div class="wrapper row3">
       <section class="hoc container clear"> 
-        <!-- ################################################################################################ -->
         <div class="sectiontitle">
           <h6 class="heading">What Now</h6>
+      Have Something to Say?<input type="text" v-model="newPost">
+      <button v-on:click="createPost()">Post</button>
           <p></p>
         </div>
         <ul class="nospace group services">
           <li class="list-group-item">
-            <article class="inverse" v-for="post in posts"><a href="#"><i class="fas fa-baby"></i></a>
+            <article class="inverse" v-for="post in posts"><a href="#"></a>
               <h3>{{post.post}}</h3>      
                  <div v-for="comment in post.comments">
                   <p>{{comment.comment}}</p>      
               <!-- <h6 class="heading font-x1"><a href="#">Maecenas</a></h6> -->
-                  <p>Felis quam eget dictum suscipit vivamus et nec metus maecenas</p>
+                  <p></p>
                 </div>
                   Comment<input type="text" v-model="post.newcomment">
-                  {{post.id}}
-                  <button v-on:click="createComment(post.id,post.newcomment)">Comment</button>
+                  
+                  <button v-on:click="createComment(post.id,post.newcomment,post)">Comment</button>
             </article>
           </li>
-<!--           <li class="one_quarter">
-            <article><a href="#"><i class="fa fa-3x fa-weibo"></i></a>
-              <h6 class="heading font-x1"><a href="#">Dignissim</a></h6>
-              <p>Dapibus consectetuer mauris aliquam urna dolor semper volutpat</p>
-            </article>
-          </li>
-          <li class="one_quarter">
-            <article class="inverse"><a href="#"><i class="fa fa-3x fa-wheelchair-alt"></i></a>
-              <h6 class="heading font-x1"><a href="#">Vestibulum</a></h6>
-              <p>Id dictum vel est morbi lacinia sagittis mauris pellentesque id eros sit</p>
-            </article>
-          </li>
-          <li class="one_quarter">
-            <article><a href="#"><i class="fa fa-3x fa-viacoin"></i></a>
-              <h6 class="heading font-x1"><a href="#">Bibendum</a></h6>
-              <p>Amet risus interdum ornare integer id justo ut diam suscipit laoreet</p>
-            </article> -->
-          <!-- </li> -->
         </ul>
-        <!-- ################################################################################################ -->
       </section>
     </div>
-      Have Something to Say?<input type="text" v-model="newPost">
-      <button v-on:click="createPost()">Post</button>
-      <div v-for="post in posts">
-        <h3>{{post.post}}</h3>      
-          <div v-for="comment in post.comments">
-            <p>{{comment.comment}}</p>      
-
-          <!--this is where you would be able to edit your post using the <input> and the styling for the good looks. -->
-          </div>
-
-
-      </div>
-      Post Id<input type="text" v-model="postId">
-      <button v-on:click="createComment()">Comment</button>
-
-<!--     <input type="text" v-model="titleFilter" list="posts">
-    <datalist id="posts">
-      <option v-for="post in posts">{{ post.post }}</option>
-    </datalist> -->
-
-      <!-- <transition-group appear enter-active-class="animated wobble" leave-active-class="animated rubberBand"> -->
-       <!--  <div v-for="post in orderBy(filterBy(posts), sortAttribute, sortAsc)" v-bind:key="post.id">
-          <p>{{ post.post }}</p>
- -->     <!--      <button v-on:click="removePost(post)">Remove post</button>
-          <router-link v-bind:to="'/posts/' + post.id">See more info</router-link> -->
-          <!-- <hr> -->
-        <!-- </div> -->
-      <!-- </transition-group> -->
   </div>
 </template>
 <style>
@@ -134,27 +88,20 @@ export default {
         })
       })
     },
-    createComment: function(postId, newComment) {
+    createComment: function(postId, newComment, post) {
       var params = {
         comment: newComment, 
         post_id: postId
       }
       console.log(postId, newComment)
+      console.log(params)
+      console.log(post)
+      console.log(newComment)
       axios.post("/api/comments", params).then(response => {
         console.log(response.data)
+      post.comments.push(params)
       })
     }
 },
 }
 </script>
-<!--     // ,
-
-    // setSortAttribute: function(attribute) {
-    //   console.log(attribute);
-    //   this.sortAttribute = attribute;
-    //   if (this.sortAsc === 1) {
-    //     this.sortAsc = -1;
-    //   } else {
-    //     this.sortAsc = 1;
-    //   }
-    // }
